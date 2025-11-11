@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="cursor.css" />
 
     <style>
-      /* === Global Styles === */
+      /* === GLOBAL STYLES === */
       body {
         margin: 0;
         height: 100vh;
         background: radial-gradient(circle at center, #0a0f1e, #020409);
         font-family: "Poppins", sans-serif;
-        color: white;
+        color: #d8f3f3;
         overflow: hidden;
         position: relative;
         cursor: none;
@@ -41,26 +41,27 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.04);
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0, 230, 230, 0.3);
-        box-shadow: 0 0 15px rgba(0, 230, 230, 0.2);
+        border-bottom: 1px solid rgba(24, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(24, 255, 255, 0.1);
         z-index: 10;
       }
 
       nav a {
-        color: #00e6e6;
+        color: #18ffff;
         text-decoration: none;
         padding: 15px 25px;
         display: inline-block;
-        font-weight: bold;
+        font-weight: 600;
+        letter-spacing: 0.5px;
         transition: all 0.3s ease;
       }
 
       nav a:hover {
-        background: rgba(0, 230, 230, 0.2);
+        background: rgba(24, 255, 255, 0.15);
         color: #0a0f1e;
-        box-shadow: 0 0 20px #00e6e6;
+        box-shadow: 0 0 15px #18ffff;
       }
 
       /* === HERO SECTION === */
@@ -79,18 +80,18 @@
       .hero h1 {
         font-family: "Orbitron", sans-serif;
         font-size: 3rem;
-        color: #00e6e6;
-        text-shadow: 0 0 25px #00e6e6;
+        color: #18ffff;
+        text-shadow: 0 0 25px #18ffff;
         margin-bottom: 10px;
       }
 
       .hero h2 {
-        color: #aefeff;
+        color: #b8e6e6;
         margin-bottom: 20px;
       }
 
       .hero p {
-        color: #d6e9f8;
+        color: #d8f3f3;
         max-width: 500px;
         margin-bottom: 40px;
         line-height: 1.6;
@@ -106,8 +107,8 @@
 
       .buttons a {
         padding: 12px 30px;
-        border: 2px solid #00e6e6;
-        color: #00e6e6;
+        border: 2px solid #18ffff;
+        color: #18ffff;
         border-radius: 8px;
         font-weight: bold;
         text-decoration: none;
@@ -117,60 +118,62 @@
       }
 
       .buttons a:hover {
-        background: #00e6e6;
+        background: #18ffff;
         color: #0a0f1e;
-        box-shadow: 0 0 25px #00e6e6;
+        box-shadow: 0 0 25px #18ffff;
         transform: scale(1.05);
       }
 
-      /* === POPUPS === */
-      #coming-soon,
-      #contact-info {
+      /* === POPUP WRAPPER (click-outside close area) === */
+      .popup-wrapper {
         display: none;
         position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(0, 230, 230, 0.3);
-        border-radius: 15px;
-        padding: 25px 40px;
-        text-align: center;
-        color: #aefeff;
-        backdrop-filter: blur(12px);
-        box-shadow: 0 0 25px rgba(0, 230, 230, 0.3);
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
         z-index: 20;
-        animation: fadeIn 0.5s ease forwards;
-        width: 300px;
+        justify-content: center;
+        align-items: center;
       }
 
-      #coming-soon a {
-        color: #00e6e6;
+      /* === POPUP BOX === */
+      .popup {
+        background: rgba(10, 20, 30, 0.9);
+        border: 1px solid rgba(24, 255, 255, 0.3);
+        border-radius: 15px;
+        padding: 30px 40px;
+        text-align: center;
+        color: #c8f4f4;
+        box-shadow: 0 0 25px rgba(24, 255, 255, 0.2);
+        animation: fadeIn 0.4s ease forwards;
+        min-width: 300px;
+      }
+
+      .popup a {
+        color: #18ffff;
         text-decoration: none;
         font-weight: bold;
       }
 
-      #coming-soon a:hover {
+      .popup a:hover {
         text-decoration: underline;
       }
 
-      #coming-soon button,
-      #contact-info button {
+      .popup button {
         margin-top: 15px;
         background: transparent;
-        border: 1px solid #00e6e6;
-        color: #00e6e6;
+        border: 1px solid #18ffff;
+        color: #18ffff;
         padding: 6px 15px;
         border-radius: 8px;
         cursor: pointer;
         transition: 0.3s;
       }
 
-      #coming-soon button:hover,
-      #contact-info button:hover {
-        background: #00e6e6;
+      .popup button:hover {
+        background: #18ffff;
         color: #0a0f1e;
-        box-shadow: 0 0 20px #00e6e6;
+        box-shadow: 0 0 15px #18ffff;
       }
 
       @keyframes fadeIn {
@@ -200,7 +203,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <h1>Welcome, I’m <span style="color:#00e6e6;">SHIVA_</span></h1>
+      <h1>Welcome, I’m <span style="color:#18ffff;">SHIVA_</span></h1>
       <h2>Crafting Interactive Web & 3D Experiences ⚡</h2>
       <p>
         Passionate about merging creative design with code — delivering futuristic,
@@ -214,40 +217,44 @@
       </div>
     </section>
 
-    <!-- Contact Popup -->
-    <div id="contact-info">
-      <h3>📞 Contact Info</h3>
-      <p><strong>Name:</strong> Shivachandra Eramalla</p>
-      <p><strong>Phone:</strong> 8686121200</p>
-      <p>
-        <strong>Email:</strong>
-        <a href="mailto:shivachandra.eramalla@gmail.com" style="color:#00e6e6;">
-          shivachandra.eramalla@gmail.com
-        </a>
-      </p>
-      <button id="close-contact">Close</button>
+    <!-- CONTACT POPUP -->
+    <div id="contact-popup" class="popup-wrapper">
+      <div class="popup" id="contact-box">
+        <h3>📞 Contact Info</h3>
+        <p><strong>Name:</strong> Shivachandra Eramalla</p>
+        <p><strong>Phone:</strong> 8686121200</p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:shivachandra.eramalla@gmail.com">shivachandra.eramalla@gmail.com</a>
+        </p>
+        <button id="close-contact">Close</button>
+      </div>
     </div>
 
-    <!-- Frontend Projects Popup -->
-    <div id="coming-soon">
-      <h3>💻 Frontend Projects</h3>
-      <p>
-        🃏 <a href="https://shivachandraeramalla.github.io/Blacjack_Game/" target="_blank">
-          Blackjack Game
-        </a>
-      </p>
-      <p>
-        📝 <a href="https://shivachandraeramalla.github.io/To-Do-List/" target="_blank">
-          To-Do List App
-        </a>
-      </p>
-      <p style="color:#aefeff; margin-top:10px;">⚙️ More projects loading soon...</p>
-      <button id="close-popup">Close</button>
+    <!-- FRONTEND PROJECTS POPUP -->
+    <div id="frontend-popup" class="popup-wrapper">
+      <div class="popup" id="frontend-box">
+        <h3>💻 Frontend Projects</h3>
+        <p>
+          🃏
+          <a href="https://shivachandraeramalla.github.io/Blacjack_Game/" target="_blank">
+            Blackjack Game
+          </a>
+        </p>
+        <p>
+          📝
+          <a href="https://shivachandraeramalla.github.io/To-Do-List/" target="_blank">
+            To-Do List App
+          </a>
+        </p>
+        <p style="color:#aefeff; margin-top:10px;">⚙️ More projects loading soon...</p>
+        <button id="close-frontend">Close</button>
+      </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- === SCRIPTS === -->
     <script>
-      /* === Particle Background === */
+      // === STAR BACKGROUND ===
       const canvas = document.getElementById("space");
       const ctx = canvas.getContext("2d");
       let w = (canvas.width = window.innerWidth);
@@ -266,7 +273,7 @@
           let y = (this.y - h / 2) * (w / this.z) + h / 2;
           let s = (1 - this.z / w) * 3;
           ctx.beginPath();
-          ctx.fillStyle = "rgba(0,230,230," + (1 - this.z / w) + ")";
+          ctx.fillStyle = "rgba(24,255,255," + (1 - this.z / w) + ")";
           ctx.arc(x, y, s, 0, Math.PI * 2);
           ctx.fill();
         }
@@ -290,29 +297,47 @@
         h = canvas.height = window.innerHeight;
       });
 
-      /* === Popups === */
-      const contactBtns = [document.getElementById("contact-btn"), document.getElementById("contact-btn-main")];
-      const contactInfo = document.getElementById("contact-info");
-      const closeContact = document.getElementById("close-contact");
-      const frontendBtns = [document.getElementById("frontend-btn"), document.getElementById("frontend-btn-main")];
-      const popup = document.getElementById("coming-soon");
-      const closePopup = document.getElementById("close-popup");
+      // === POPUP FUNCTIONALITY ===
+      const contactPopup = document.getElementById("contact-popup");
+      const frontendPopup = document.getElementById("frontend-popup");
 
+      const contactBtns = [
+        document.getElementById("contact-btn"),
+        document.getElementById("contact-btn-main"),
+      ];
+      const frontendBtns = [
+        document.getElementById("frontend-btn"),
+        document.getElementById("frontend-btn-main"),
+      ];
+
+      const closeContact = document.getElementById("close-contact");
+      const closeFrontend = document.getElementById("close-frontend");
+
+      // Open Contact Popup
       contactBtns.forEach((btn) =>
         btn.addEventListener("click", (e) => {
           e.preventDefault();
-          contactInfo.style.display = "block";
+          contactPopup.style.display = "flex";
         })
       );
-      closeContact.addEventListener("click", () => (contactInfo.style.display = "none"));
 
+      // Open Frontend Popup
       frontendBtns.forEach((btn) =>
         btn.addEventListener("click", (e) => {
           e.preventDefault();
-          popup.style.display = "block";
+          frontendPopup.style.display = "flex";
         })
       );
-      closePopup.addEventListener("click", () => (popup.style.display = "none"));
+
+      // Close Buttons
+      closeContact.addEventListener("click", () => (contactPopup.style.display = "none"));
+      closeFrontend.addEventListener("click", () => (frontendPopup.style.display = "none"));
+
+      // Close on Outside Click
+      window.addEventListener("click", (e) => {
+        if (e.target === contactPopup) contactPopup.style.display = "none";
+        if (e.target === frontendPopup) frontendPopup.style.display = "none";
+      });
     </script>
 
     <script src="cursor.js"></script>
