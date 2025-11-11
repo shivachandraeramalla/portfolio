@@ -1,0 +1,34 @@
+/* ==== Elegant Floating Cursor Dot ==== */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, opacity 0.3s ease;
+  z-index: 9999;
+  opacity: 0.9;
+  animation: softPulse 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
+}
+
+/* Subtle breathing animation */
+@keyframes softPulse {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.2) translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+/* Hide system cursor */
+body {
+  cursor: none;
+}

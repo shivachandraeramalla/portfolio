@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #0a0f1e, #020409);
+  font-family: "Orbitron", monospace;
+  color: #00e6e6;
+  overflow: hidden;
+  transition: opacity 1s ease;
+}
+
+body.fade-out {
+  opacity: 0;
+}
+
+.console {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 230, 230, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 230, 230, 0.15);
+  padding: 30px 40px;
+  width: 500px;
+  max-width: 90%;
+  font-size: 1rem;
+  line-height: 1.6;
+  animation: fadeIn 1.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+#typing::after {
+  content: "_";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#start-btn {
+  margin-top: 30px;
+  background: transparent;
+  border: 2px solid #00e6e6;
+  color: #00e6e6;
+  font-family: "Orbitron", sans-serif;
+  padding: 10px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#start-btn:hover {
+  background: rgba(0, 230, 230, 0.1);
+  box-shadow: 0 0 15px #00e6e6;
+  transform: scale(1.05);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(#00e6e6 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.05;
+  z-index: 0;
+}
