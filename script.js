@@ -1,4 +1,4 @@
-const text = "Welcome, I’m SHIVA_  Crafting Interactive Web Experiences ⚡";
+const text = "Welcome, I’m SHIVA_  Crafting Interactive Web & 3D Experiences ⚡";
 const typingEl = document.getElementById("typing");
 let index = 0;
 
@@ -21,3 +21,4 @@ startBtn.addEventListener("click", () => {
     window.location.href = "loading.html";
   }, 1000);
 });
+
