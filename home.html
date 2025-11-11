@@ -1,345 +1,210 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shiva | Frontend Developer & 3D Artist</title>
+<style>
+  /* === GLOBAL STYLES === */
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0a0f1e, #020409);
+    font-family: "Poppins", sans-serif;
+    color: #d8f3f3;
+    overflow: hidden;
+    position: relative;
+    cursor: none;
+  }
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500..900&family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="cursor.css" />
+  canvas#space {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
 
-    <style>
-      /* === GLOBAL STYLES === */
-      body {
-        margin: 0;
-        height: 100vh;
-        background: radial-gradient(circle at center, #0a0f1e, #020409);
-        font-family: "Poppins", sans-serif;
-        color: #d8f3f3;
-        overflow: hidden;
-        position: relative;
-        cursor: none;
-      }
+  /* === NAVBAR === */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(24, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(24, 255, 255, 0.1);
+    z-index: 10;
+  }
 
-      canvas#space {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
+  nav a {
+    color: #18ffff;
+    text-decoration: none;
+    padding: 12px 18px;
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+  }
 
-      /* === NAVBAR === */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(24, 255, 255, 0.2);
-        box-shadow: 0 0 15px rgba(24, 255, 255, 0.1);
-        z-index: 10;
-      }
+  nav a:hover {
+    background: rgba(24, 255, 255, 0.15);
+    color: #0a0f1e;
+    box-shadow: 0 0 15px #18ffff;
+  }
 
-      nav a {
-        color: #18ffff;
-        text-decoration: none;
-        padding: 15px 25px;
-        display: inline-block;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-      }
+  /* === HERO SECTION === */
+  .hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    animation: fadeIn 1.5s ease forwards;
+    padding: 0 20px;
+  }
 
-      nav a:hover {
-        background: rgba(24, 255, 255, 0.15);
-        color: #0a0f1e;
-        box-shadow: 0 0 15px #18ffff;
-      }
+  .hero h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: 2.6rem;
+    color: #18ffff;
+    text-shadow: 0 0 25px #18ffff;
+    margin-bottom: 10px;
+  }
 
-      /* === HERO SECTION === */
-      .hero {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        animation: fadeIn 1.5s ease forwards;
-      }
+  .hero h2 {
+    color: #b8e6e6;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
 
-      .hero h1 {
-        font-family: "Orbitron", sans-serif;
-        font-size: 3rem;
-        color: #18ffff;
-        text-shadow: 0 0 25px #18ffff;
-        margin-bottom: 10px;
-      }
+  .hero p {
+    color: #d8f3f3;
+    max-width: 500px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
 
-      .hero h2 {
-        color: #b8e6e6;
-        margin-bottom: 20px;
-      }
+  /* === BUTTONS === */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
 
-      .hero p {
-        color: #d8f3f3;
-        max-width: 500px;
-        margin-bottom: 40px;
-        line-height: 1.6;
-      }
+  .buttons a {
+    padding: 12px 30px;
+    border: 2px solid #18ffff;
+    color: #18ffff;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    width: 240px;
+    text-align: center;
+  }
 
-      /* === BUTTONS === */
-      .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        align-items: center;
-      }
+  .buttons a:hover {
+    background: #18ffff;
+    color: #0a0f1e;
+    box-shadow: 0 0 25px #18ffff;
+    transform: scale(1.05);
+  }
 
-      .buttons a {
-        padding: 12px 30px;
-        border: 2px solid #18ffff;
-        color: #18ffff;
-        border-radius: 8px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: 0.3s;
-        width: 240px;
-        text-align: center;
-      }
+  /* === POPUP WRAPPER === */
+  .popup-wrapper {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 20;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
 
-      .buttons a:hover {
-        background: #18ffff;
-        color: #0a0f1e;
-        box-shadow: 0 0 25px #18ffff;
-        transform: scale(1.05);
-      }
+  /* === POPUP BOX === */
+  .popup {
+    background: rgba(10, 20, 30, 0.95);
+    border: 1px solid rgba(24, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 25px 30px;
+    text-align: center;
+    color: #c8f4f4;
+    box-shadow: 0 0 25px rgba(24, 255, 255, 0.2);
+    animation: fadeIn 0.4s ease forwards;
+    width: 90%;
+    max-width: 360px;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
 
-      /* === POPUP WRAPPER (click-outside close area) === */
-      .popup-wrapper {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(3px);
-        z-index: 20;
-        justify-content: center;
-        align-items: center;
-      }
+  .popup h3 {
+    font-family: "Orbitron", sans-serif;
+    color: #18ffff;
+    text-shadow: 0 0 10px #18ffff;
+    margin-bottom: 10px;
+  }
 
-      /* === POPUP BOX === */
-      .popup {
-        background: rgba(10, 20, 30, 0.9);
-        border: 1px solid rgba(24, 255, 255, 0.3);
-        border-radius: 15px;
-        padding: 30px 40px;
-        text-align: center;
-        color: #c8f4f4;
-        box-shadow: 0 0 25px rgba(24, 255, 255, 0.2);
-        animation: fadeIn 0.4s ease forwards;
-        min-width: 300px;
-      }
+  .popup a {
+    color: #18ffff;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-      .popup a {
-        color: #18ffff;
-        text-decoration: none;
-        font-weight: bold;
-      }
+  .popup a:hover {
+    text-decoration: underline;
+  }
 
-      .popup a:hover {
-        text-decoration: underline;
-      }
+  .popup button {
+    margin-top: 15px;
+    background: transparent;
+    border: 1px solid #18ffff;
+    color: #18ffff;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 0.9rem;
+  }
 
-      .popup button {
-        margin-top: 15px;
-        background: transparent;
-        border: 1px solid #18ffff;
-        color: #18ffff;
-        padding: 6px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
+  .popup button:hover {
+    background: #18ffff;
+    color: #0a0f1e;
+    box-shadow: 0 0 15px #18ffff;
+  }
 
-      .popup button:hover {
-        background: #18ffff;
-        color: #0a0f1e;
-        box-shadow: 0 0 15px #18ffff;
-      }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Background -->
-    <canvas id="space"></canvas>
-
-    <!-- Navbar -->
-    <nav>
-      <a href="index.html">Home</a>
-      <a id="contact-btn" href="#">Contact</a>
-      <a href="https://shivachandra.my.canva.site/" target="_blank">3D Projects</a>
-      <a id="frontend-btn" href="#">Frontend Projects</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>Welcome, I’m <span style="color:#18ffff;">SHIVA_</span></h1>
-      <h2>Crafting Interactive Web & 3D Experiences ⚡</h2>
-      <p>
-        Passionate about merging creative design with code — delivering futuristic,
-        minimal, and dynamic web and 3D experiences.
-      </p>
-
-      <div class="buttons">
-        <a id="contact-btn-main" href="#">📞 Contact Me</a>
-        <a href="https://shivachandra.my.canva.site/" target="_blank">🎨 3D Portfolio</a>
-        <a id="frontend-btn-main" href="#">💻 Frontend Projects</a>
-      </div>
-    </section>
-
-    <!-- CONTACT POPUP -->
-    <div id="contact-popup" class="popup-wrapper">
-      <div class="popup" id="contact-box">
-        <h3>📞 Contact Info</h3>
-        <p><strong>Name:</strong> Shivachandra Eramalla</p>
-        <p><strong>Phone:</strong> 8686121200</p>
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:shivachandra.eramalla@gmail.com">shivachandra.eramalla@gmail.com</a>
-        </p>
-        <button id="close-contact">Close</button>
-      </div>
-    </div>
-
-    <!-- FRONTEND PROJECTS POPUP -->
-    <div id="frontend-popup" class="popup-wrapper">
-      <div class="popup" id="frontend-box">
-        <h3>💻 Frontend Projects</h3>
-        <p>
-          🃏
-          <a href="https://shivachandraeramalla.github.io/Blacjack_Game/" target="_blank">
-            Blackjack Game
-          </a>
-        </p>
-        <p>
-          📝
-          <a href="https://shivachandraeramalla.github.io/To-Do-List/" target="_blank">
-            To-Do List App
-          </a>
-        </p>
-        <p style="color:#aefeff; margin-top:10px;">⚙️ More projects loading soon...</p>
-        <button id="close-frontend">Close</button>
-      </div>
-    </div>
-
-    <!-- === SCRIPTS === -->
-    <script>
-      // === STAR BACKGROUND ===
-      const canvas = document.getElementById("space");
-      const ctx = canvas.getContext("2d");
-      let w = (canvas.width = window.innerWidth);
-      let h = (canvas.height = window.innerHeight);
-      const stars = [];
-      const numStars = 200;
-
-      class Star {
-        constructor() {
-          this.x = Math.random() * w;
-          this.y = Math.random() * h;
-          this.z = Math.random() * w;
-        }
-        show() {
-          let x = (this.x - w / 2) * (w / this.z) + w / 2;
-          let y = (this.y - h / 2) * (w / this.z) + h / 2;
-          let s = (1 - this.z / w) * 3;
-          ctx.beginPath();
-          ctx.fillStyle = "rgba(24,255,255," + (1 - this.z / w) + ")";
-          ctx.arc(x, y, s, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        update() {
-          this.z -= 2;
-          if (this.z <= 0) this.z = w;
-        }
-      }
-
-      for (let i = 0; i < numStars; i++) stars.push(new Star());
-      function animate() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-        ctx.fillRect(0, 0, w, h);
-        for (let s of stars) s.show(), s.update();
-        requestAnimationFrame(animate);
-      }
-      animate();
-
-      window.addEventListener("resize", () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
-
-      // === POPUP FUNCTIONALITY ===
-      const contactPopup = document.getElementById("contact-popup");
-      const frontendPopup = document.getElementById("frontend-popup");
-
-      const contactBtns = [
-        document.getElementById("contact-btn"),
-        document.getElementById("contact-btn-main"),
-      ];
-      const frontendBtns = [
-        document.getElementById("frontend-btn"),
-        document.getElementById("frontend-btn-main"),
-      ];
-
-      const closeContact = document.getElementById("close-contact");
-      const closeFrontend = document.getElementById("close-frontend");
-
-      // Open Contact Popup
-      contactBtns.forEach((btn) =>
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          contactPopup.style.display = "flex";
-        })
-      );
-
-      // Open Frontend Popup
-      frontendBtns.forEach((btn) =>
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          frontendPopup.style.display = "flex";
-        })
-      );
-
-      // Close Buttons
-      closeContact.addEventListener("click", () => (contactPopup.style.display = "none"));
-      closeFrontend.addEventListener("click", () => (frontendPopup.style.display = "none"));
-
-      // Close on Outside Click
-      window.addEventListener("click", (e) => {
-        if (e.target === contactPopup) contactPopup.style.display = "none";
-        if (e.target === frontendPopup) frontendPopup.style.display = "none";
-      });
-    </script>
-
-    <script src="cursor.js"></script>
-  </body>
-</html>
+  /* === MOBILE RESPONSIVE === */
+  @media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero h2 {
+      font-size: 1rem;
+    }
+    .buttons a {
+      width: 200px;
+      font-size: 0.9rem;
+    }
+    .popup {
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
