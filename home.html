@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shiva | Frontend Developer & 3D Artist</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500..900&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="cursor.css" />
+
+    <style>
+      /* === Global Styles === */
+      body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at center, #0a0f1e, #020409);
+        font-family: "Poppins", sans-serif;
+        color: white;
+        overflow: hidden;
+        position: relative;
+        cursor: none;
+      }
+
+      canvas#space {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      /* === NAVBAR === */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 230, 230, 0.3);
+        box-shadow: 0 0 15px rgba(0, 230, 230, 0.2);
+        z-index: 10;
+      }
+
+      nav a {
+        color: #00e6e6;
+        text-decoration: none;
+        padding: 15px 25px;
+        display: inline-block;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      nav a:hover {
+        background: rgba(0, 230, 230, 0.2);
+        color: #0a0f1e;
+        box-shadow: 0 0 20px #00e6e6;
+      }
+
+      /* === MAIN CONTENT === */
+      .hero {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        animation: fadeIn 1.5s ease forwards;
+      }
+
+      .hero h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 3rem;
+        color: #00e6e6;
+        text-shadow: 0 0 25px #00e6e6;
+        margin-bottom: 10px;
+      }
+
+      .hero h2 {
+        color: #aefeff;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        color: #d6e9f8;
+        max-width: 500px;
+        margin-bottom: 40px;
+        line-height: 1.6;
+      }
+
+      /* === BUTTONS === */
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .buttons a {
+        padding: 12px 30px;
+        border: 2px solid #00e6e6;
+        color: #00e6e6;
+        border-radius: 8px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: 0.3s;
+        width: 240px;
+        text-align: center;
+      }
+
+      .buttons a:hover {
+        background: #00e6e6;
+        color: #0a0f1e;
+        box-shadow: 0 0 25px #00e6e6;
+        transform: scale(1.05);
+      }
+
+      /* === POPUP BOX === */
+      #coming-soon,
+      #contact-info {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(0, 230, 230, 0.3);
+        border-radius: 15px;
+        padding: 25px 40px;
+        text-align: center;
+        color: #aefeff;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 25px rgba(0, 230, 230, 0.3);
+        z-index: 20;
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      #coming-soon button,
+      #contact-info button {
+        margin-top: 15px;
+        background: transparent;
+        border: 1px solid #00e6e6;
+        color: #00e6e6;
+        padding: 6px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      #coming-soon button:hover,
+      #contact-info button:hover {
+        background: #00e6e6;
+        color: #0a0f1e;
+        box-shadow: 0 0 20px #00e6e6;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Particle BG -->
+    <canvas id="space"></canvas>
+
+    <!-- Navbar -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a id="contact-btn" href="#">Contact</a>
+      <a href="https://shivachandra.my.canva.site/" target="_blank"
+        >3D Projects</a
+      >
+      <a id="frontend-btn" href="#">Frontend Projects</a>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Welcome, I’m <span style="color: #00e6e6">SHIVA_</span></h1>
+      <h2>Crafting Interactive Web & 3D Experiences ⚡</h2>
+      <p>
+        Passionate about merging creative design with code — delivering
+        futuristic, minimal, and dynamic web and 3D experiences.
+      </p>
+
+      <div class="buttons">
+        <a id="contact-btn-main" href="#">📞 Contact Me</a>
+        <a href="https://shivachandra.my.canva.site/" target="_blank"
+          >🎨 3D Portfolio</a
+        >
+        <a id="frontend-btn-main" href="#">💻 Frontend Projects</a>
+      </div>
+    </section>
+
+    <!-- Contact Info -->
+    <div id="contact-info">
+      <h3>📞 Contact Info</h3>
+      <p><strong>Name:</strong> Shivachandra Eramalla</p>
+      <p><strong>Phone:</strong> 8686121200</p>
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:shivachandra.eramalla@gmail.com" style="color: #00e6e6">
+          shivachandra.eramalla@gmail.com
+        </a>
+      </p>
+      <button id="close-contact">Close</button>
+    </div>
+
+    <!-- Coming Soon -->
+    <div id="coming-soon">
+      <h3>🚧 Frontend Projects</h3>
+      <p>Loading Soon... Stay Tuned ⚡</p>
+      <button id="close-popup">Close</button>
+    </div>
+
+    <script>
+      // === Star Background ===
+      const canvas = document.getElementById("space");
+      const ctx = canvas.getContext("2d");
+      let w = (canvas.width = window.innerWidth);
+      let h = (canvas.height = window.innerHeight);
+      const stars = [];
+      const numStars = 200;
+
+      class Star {
+        constructor() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.z = Math.random() * w;
+        }
+        show() {
+          let x = (this.x - w / 2) * (w / this.z) + w / 2;
+          let y = (this.y - h / 2) * (w / this.z) + h / 2;
+          let s = (1 - this.z / w) * 3;
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(0,230,230," + (1 - this.z / w) + ")";
+          ctx.arc(x, y, s, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        update() {
+          this.z -= 2;
+          if (this.z <= 0) this.z = w;
+        }
+      }
+
+      for (let i = 0; i < numStars; i++) stars.push(new Star());
+      function animate() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+        ctx.fillRect(0, 0, w, h);
+        for (let s of stars) s.show(), s.update();
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      window.addEventListener("resize", () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      // === Popups ===
+      const contactBtns = [
+        document.getElementById("contact-btn"),
+        document.getElementById("contact-btn-main"),
+      ];
+      const contactInfo = document.getElementById("contact-info");
+      const closeContact = document.getElementById("close-contact");
+      const frontendBtns = [
+        document.getElementById("frontend-btn"),
+        document.getElementById("frontend-btn-main"),
+      ];
+      const popup = document.getElementById("coming-soon");
+      const closePopup = document.getElementById("close-popup");
+
+      contactBtns.forEach((btn) =>
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          contactInfo.style.display = "block";
+        })
+      );
+      closeContact.addEventListener(
+        "click",
+        () => (contactInfo.style.display = "none")
+      );
+
+      frontendBtns.forEach((btn) =>
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          popup.style.display = "block";
+        })
+      );
+      closePopup.addEventListener(
+        "click",
+        () => (popup.style.display = "none")
+      );
+    </script>
+
+    <script src="cursor.js"></script>
+  </body>
+</html>
