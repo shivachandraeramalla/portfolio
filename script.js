@@ -22,6 +22,4 @@ startBtn.addEventListener("click", () => {
   }, 1000);
 });
 
-document.body.classList.add("ai-speaking");
-setTimeout(() => document.body.classList.remove("ai-speaking"), 4000);
 
