@@ -58,7 +58,14 @@ function aiSpeak(text, delay = 800) {
   else speechSynthesis.onvoiceschanged = assignVoice;
 }
 </script>
+    <script>
+window.addEventListener("load", () => {
+  aiSpeak("System online. Initializing portfolio sequence...", 1000);
+});
+</script>
+s
 
   </body>
 </html>
+
 
