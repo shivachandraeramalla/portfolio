@@ -415,7 +415,14 @@ function aiSpeak(text, delay = 800) {
   else speechSynthesis.onvoiceschanged = assignVoice;
 }
 </script>
+    <script>
+window.addEventListener("load", () => {
+  aiSpeak("Welcome to Shiva’s portfolio. Experience initialized.", 1200);
+});
+</script>
+
 
   </body>
 </html>
+
 
