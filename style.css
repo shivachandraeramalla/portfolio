@@ -82,3 +82,12 @@ body::before {
   opacity: 0.05;
   z-index: 0;
 }
+@keyframes aiGlow {
+  0%, 100% { text-shadow: 0 0 10px #00e6e6, 0 0 20px #00ffff; }
+  50% { text-shadow: 0 0 30px #00ffff, 0 0 40px #00e6e6; }
+}
+.ai-speaking {
+  animation: aiGlow 2.5s ease-in-out infinite;
+}
+
+
