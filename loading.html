@@ -43,7 +43,7 @@
         position: relative;
         z-index: 2;
         font-size: 1.2rem;
-        color: #00ff41; /* matrix green start */
+        color: #00ff41;
         text-shadow: 0 0 10px #00ff41;
         animation: blink 1s infinite;
         transition: color 1.5s ease, text-shadow 1.5s ease;
@@ -74,15 +74,14 @@
 
       const letters = Array(256).join(1).split("");
       const fontSize = 14;
-      let hueShift = 0; // used to fade from green to cyan
+      let hueShift = 0;
 
       function drawMatrix() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // gradually shift hue from green to cyan
-        hueShift = Math.min(hueShift + 0.2, 90); // stop near cyan range
-        const hueColor = `hsl(${120 - hueShift}, 100%, 50%)`; // 120° = green → 180° = cyan
+        hueShift = Math.min(hueShift + 0.2, 90);
+        const hueColor = `hsl(${120 - hueShift}, 100%, 50%)`;
 
         ctx.fillStyle = hueColor;
         ctx.font = fontSize + "px monospace";
@@ -98,7 +97,6 @@
 
       setInterval(drawMatrix, 33);
 
-      // gradually shift heading color too
       const heading = document.querySelector("h2");
       setTimeout(() => {
         heading.style.color = "#00e6e6";
@@ -107,7 +105,6 @@
           "radial-gradient(circle at center, #0a0f1e, #020409)";
       }, 2500);
 
-      // fade to home page
       setTimeout(() => {
         document.body.classList.add("fade-out");
         setTimeout(() => {
@@ -116,9 +113,7 @@
       }, 4000);
     </script>
 
-
+    <!-- ✅ Floating Cursor -->
+    <script src="cursor.js"></script>
   </body>
 </html>
-
-
-
