@@ -117,5 +117,28 @@
     </script>
 
     <script src="cursor.js"></script>
+    <script>
+function aiSpeak(text, delay = 800) {
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.pitch = 0.9;    // lower = robotic tone
+  msg.rate = 0.9;     // slower = dramatic
+  msg.volume = 1.0;
+  msg.lang = "en-US";
+
+  const assignVoice = () => {
+    const voices = speechSynthesis.getVoices();
+    msg.voice =
+      voices.find(v => v.name.includes("Google UK English Male")) ||
+      voices.find(v => v.lang === "en-US") ||
+      voices[0];
+    setTimeout(() => speechSynthesis.speak(msg), delay);
+  };
+
+  if (speechSynthesis.getVoices().length) assignVoice();
+  else speechSynthesis.onvoiceschanged = assignVoice;
+}
+</script>
+
   </body>
 </html>
+
